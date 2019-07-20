@@ -2,6 +2,7 @@ package domain
 
 import (
 	"math/rand"
+	"time"
 
 	"./enum"
 )
@@ -26,6 +27,7 @@ func NewDeck() *Deck {
 
 func (deck *Deck) shuffle() {
 	n := len(deck.cards)
+	rand.Seed(time.Now().UnixNano())
 	for i := n - 1; i >= 0; i-- {
 		j := rand.Intn(i + 1)
 		deck.cards[i], deck.cards[j] = deck.cards[j], deck.cards[i]
