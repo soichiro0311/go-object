@@ -16,7 +16,11 @@ func NewDeck() *Deck {
 	cards := make([]Card, 0)
 	for _, value := range enum.SuitEnumValues() {
 		for i := 1; i < 14; i++ {
-			cards = append(cards, NewCard(i, value))
+			card, err := NewCard(i, value)
+			if err != nil {
+				panic(err)
+			}
+			cards = append(cards, card)
 		}
 	}
 	deck.cards = cards
